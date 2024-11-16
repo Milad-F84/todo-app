@@ -3,7 +3,10 @@ const input = document.getElementById("input");
 const btn = document.getElementById("btn");
 const root = document.getElementById("root");
 let editableItemId = null;
-let TODOS = [];
+let TODOS = JSON.parse(localStorage.getItem("todos"));
+if(!TODOS){
+    TODOS = [];
+}
 
 //FUNCTIONS
 function addTodo() {
@@ -17,6 +20,7 @@ function addTodo() {
   };
   TODOS.push(newTodo);
   input.value = "";
+  window.localStorage.setItem("todos", JSON.stringify(TODOS));
   render();
 }
 render();
@@ -45,6 +49,7 @@ function render() {
 function deleteTodo(todoId) {
   const newTodos = TODOS.filter((todo) => todo.id != todoId);
   TODOS = newTodos;
+  window.localStorage.setItem("todos", JSON.stringify(TODOS));
   render();
 }
 
@@ -67,6 +72,7 @@ function sumbitTodo(todoId) {
   });
   TODOS = newTodos;
   editableItemId = null;
+  window.localStorage.setItem("todos", JSON.stringify(TODOS));
   render();
 }
 
