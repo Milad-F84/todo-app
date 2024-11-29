@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="./assets/icon/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css">
     <script src="./main.js" defer></script>
 </head>
-<body class="bg-purple-400">
-    <div class="container-primary flex flex-col items-center gap-8">
-        <h1 class="text-6xl mt-2 fon">Todo List</h1>
-        <div class="">
-            <input class="text-black text-sm w-auto flex-1 outline-none bg-transparent p-3 font-extralight border-b border-solid border-black placeholder:text-black" id="input" type="text" placeholder="add your text" />
-            <i class="fa-solid fa-check cursor-pointer" id="btn" onclick="addTodo()"></i>
+<body class="h-screen bg-yellow-300">
+    <div class="max-w-[500px] w-full font-sans absolute m-auto left-0 right-0 top-7 bg-slate-50 text-center">
+        <div class="py-8 px-10 shadow-lg rounded-2xl">
+            <h1 class="text-5xl mt-2 font-medium">Todo List</h1>
+            <div class="relative flex justify-between items-center gap-4 ">
+                <input
+                    class="w-full bg-transparent text-black border-b-2 border-solid border-slate-300 py-4 px-2 focus:outline-none focus:border-blue-600 placeholder:text-black"
+                    id="input" type="text" placeholder="add your text" />
+                <i class="fa-solid fa-check cursor-pointer relative text-lg" id="btn" onclick="addTodo()"></i>
+            </div>
         </div>
         <ul id="root">
         

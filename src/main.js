@@ -4,24 +4,26 @@ const btn = document.getElementById("btn");
 const root = document.getElementById("root");
 let editableItemId = null;
 let TODOS = JSON.parse(localStorage.getItem("todos"));
-if(!TODOS){
-    TODOS = [];
+if (!TODOS) {
+  TODOS = [];
 }
 
 //FUNCTIONS
 function addTodo() {
   const inputVal = input.value;
-  const newId = Math.floor(Math.random() * 10000000);
+  if (inputVal) {
+    const newId = Math.floor(Math.random() * 10000000);
 
-  const newTodo = {
-    id: newId,
-    text: inputVal,
-    isDone: false,
-  };
-  TODOS.push(newTodo);
-  input.value = "";
-  window.localStorage.setItem("todos", JSON.stringify(TODOS));
-  render();
+    const newTodo = {
+      id: newId,
+      text: inputVal,
+      isDone: false,
+    };
+    TODOS.push(newTodo);
+    input.value = "";
+    window.localStorage.setItem("todos", JSON.stringify(TODOS));
+    render();
+  }
 }
 render();
 
@@ -30,16 +32,16 @@ function render() {
     if (todo.id === editableItemId) {
       return `
           <li>
-          <input class="text-black text-sm w-auto flex-1 outline-none bg-transparent p-3 font-extralight border-b border-solid border-black placeholder:text-black"  id="editInput" type="text" value="${todo.text}" placeholder="add your new text"></input>
-          <i class="fa-solid fa-check cursor-pointer" onclick="sumbitTodo(${todo.id})"></i>
+          <input class="w-auto bg-transparent text-black border-b-2 border-solid border-slate-300 py-4 px-2 focus:outline-none focus:border-blue-600 placeholder:text-black"  id="editInput" type="text" value="${todo.text}" placeholder="add your new text"></input>
+          <i class="fa-solid fa-check cursor-pointer relative text-lg" onclick="sumbitTodo(${todo.id})"></i>
           </li>
           `;
     }
     return `
       <li>
       ${todo.text}
-      <i class="fa-solid fa-trash cursor-pointer" onclick="deleteTodo(${todo.id})"></i>
-      <i class="fa-solid fa-pen-to-square cursor-pointer" onclick="editTodo(${todo.id})"></i>
+      <i class="fa-solid fa-trash cursor-pointer text-lg" onclick="deleteTodo(${todo.id})"></i>
+      <i class="fa-solid fa-pen-to-square cursor-pointer text-lg" onclick="editTodo(${todo.id})"></i>
       </li>
       `;
   }).join("");
